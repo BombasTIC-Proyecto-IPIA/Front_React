@@ -4,25 +4,30 @@ const MenuPacientes = (props) => {
   const [pacientes, setPacientes] = useState([]);
 
   useEffect(() => {
-    fetch("http://172.20.10.2:3000/api/paciente")
-      .then((response) => response.json())
-      .then((data) => setPacientes(data))
-      .catch((error) => console.error(error));
-    fetch("http://172.20.10.2:3000/api/diagnostico")
-      .then((response) => response.json())
-      .then((diagnosticos) => {
-        const pacientesActualizados = pacientes.map((paciente) => {
-          const diagnostico = diagnosticos.find(
-            (d) => d.PacienteDni === paciente.dni
-          );
-          return {
-            ...paciente,
-            diagnostico: diagnostico ? "Hecho" : "Pendiente",
-          };
-        });
-        setPacientes(pacientesActualizados);
-      })
-      .catch((error) => console.error(error));
+    const fetchDataPaciente = async () => {
+      await fetch("http://localhost:3000/api/paciente")
+        .then((response) => response.json())
+        .then((data) => setPacientes(data))
+        .catch((error) => console.error(error));
+
+
+      fetch('http://localhost:3000/api/diagnostico')
+        .then(response => response.json())
+        .then(diagnosticos => {
+          setPacientes(prevPacientes => {
+            return prevPacientes.map(paciente => {
+              const diagnostico = diagnosticos.find(d => d.PacienteDni === paciente.dni);
+              return {
+                ...paciente,
+                diagnostico: diagnostico ? 'Hecho' : 'Pendiente'
+              };
+            });
+          });
+        })
+        .catch(error => console.error(error));
+    }
+    fetchDataPaciente();
+
   }, []);
 
   return (
