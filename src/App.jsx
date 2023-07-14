@@ -5,6 +5,7 @@ import Footer from './components/Footer';
 import Login from './components/LogIn';
 import ListaPacientes from './components/ListaPacientes';
 import { BrowserRouter, Router, Routes, Route } from 'react-router-dom';
+import VistaDoctores from './components/VistaDoctores';
 
 function App() {
 
@@ -16,6 +17,7 @@ function App() {
           <Route path="/" element={<Home />} />
           <Route path="/login" element={<Login/>}/>
           <Route path="/pacientes" element={<ListaPacientes/>}/>
+          <Route path="/doctor" element={<VistaDoctores/>}/>
         </Routes>
       </main>
       <Footer />
