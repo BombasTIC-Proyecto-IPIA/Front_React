@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import MenuDesplegable from './MenuDesplegable';
 import Select from 'react-select'
 
 const Login = (props) => {
@@ -9,7 +8,7 @@ const Login = (props) => {
     const options = [
         { label: "Doctor", value: "D" },
         { label: "Paciente", value: "P" }
-      ];
+    ];
     const handleSubmit = (e) => {
         e.preventDefault();
         console.log(tipoUsuario);
