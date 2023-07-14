@@ -1,18 +1,19 @@
 import React, { useState } from "react";
-import Select from 'react-select'
+import Select from "react-select";
+import cssLogin from "../styles/login.css";
 
 const Login = (props) => {
-    const [email, setEmail] = useState('');
-    const [pass, setPass] = useState('');
-    const [tipoUsuario, setTipoUsuario] = useState('');
-    const options = [
-        { label: "Doctor", value: "D" },
-        { label: "Paciente", value: "P" }
-    ];
-    const handleSubmit = (e) => {
-        e.preventDefault();
-        console.log(tipoUsuario);
-    }
+  const [email, setEmail] = useState("");
+  const [pass, setPass] = useState("");
+  const [tipoUsuario, setTipoUsuario] = useState("");
+  const options = [
+    { label: "Doctor", value: "D" },
+    { label: "Paciente", value: "P" },
+  ];
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    console.log(tipoUsuario);
+  };
 
     return (
         <div className="justify-center">
@@ -35,7 +36,10 @@ const Login = (props) => {
             </form>
             <button className="" onClick={() => props.onFormSwitch('register')}>Don't have an account? Register here.</button>
         </div>
-    )
-}
+      </div>
+     
+    </div>
+  );
+};
 
 export default Login;
