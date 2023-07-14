@@ -36,7 +36,7 @@ const MenuPacientes = (props) => {
         <div className="py-2 inline-block min-w-full sm:px-6 lg:px-8">
           <div className="overflow-hidden">
             <table className="min-w-full">
-              <thead className="bg-gray-200 border-b">
+              <thead className="bg-blue-300 border-b">
                 <tr>
                   <th
                     scope="col"
@@ -46,7 +46,7 @@ const MenuPacientes = (props) => {
                   </th>
                   <th
                     scope="col"
-                    className="text-sm font-medium text-gray-900 px-6 py-4 text-xl "
+                    className="text-sm font-medium text-gray-900 px-6 py-4 text-xl"
                   >
                     Nombre y apellido
                   </th>
