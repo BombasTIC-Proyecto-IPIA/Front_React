@@ -1,11 +1,13 @@
 import React, { useEffect, useState } from "react";
+import { useSelector } from 'react-redux';
 
 const MenuPacientes = (props) => {
+  const user = useSelector(state => state.user);
   const [pacientes, setPacientes] = useState([]);
 
   useEffect(() => {
     const fetchDataPaciente = async () => {
-      await fetch("http://localhost:3000/api/paciente")
+      await fetch(`http://localhost:3000/api/paciente/d/${user.dni}`)
         .then((response) => response.json())
         .then((data) => setPacientes(data))
         .catch((error) => console.error(error));

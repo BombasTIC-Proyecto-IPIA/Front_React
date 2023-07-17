@@ -1,18 +1,55 @@
 import React, { useState } from "react";
 import Select from "react-select";
 import cssLogin from "../styles/login.css";
+import { useDispatch } from "react-redux";
+import { setUser } from "../redux/userSlice";
+import { useNavigate } from 'react-router-dom';
 
 const Login = (props) => {
-  const [email, setEmail] = useState("");
+  const [dni, setDNI] = useState("");
   const [pass, setPass] = useState("");
   const [tipoUsuario, setTipoUsuario] = useState("");
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+
   const options = [
     { label: "Doctor", value: "D" },
     { label: "Paciente", value: "P" },
   ];
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log(tipoUsuario);
+
+    fetch("http://localhost:3000/auth/login", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        dni,
+        password: pass,
+        tipo: tipoUsuario,
+      }),
+    })
+      .then((response) => {
+        if (response.ok) {
+          return response.json();
+        } else {
+          throw new Error("Login failed");
+        }
+      })
+      .then((data) => {
+        console.log(data);
+        if (data.status === "Success") {
+          data.data.userType = tipoUsuario;
+          dispatch(setUser(data.data));
+          navigate("/doctor"); // Navigate to the desired component on successful login
+        }
+
+      })
+      .catch((error) => {
+        console.error(error);
+        // Handle error, e.g., display an error message to the user
+      });
   };
 
   return (
@@ -28,7 +65,7 @@ const Login = (props) => {
               <Select
                 id="dropdown-menu"
                 className=" mb-5 border-2 w-full p-2 mt-2  placeholder-gray-400  rounded-md"
-                placeholder={"e"}
+                defaultValue={{ label: "Paciente", value: "P" }}
                 options={options}
                 onChange={(e) => setTipoUsuario(e.value)}
               />
@@ -39,11 +76,11 @@ const Login = (props) => {
                 Correo Electronico
               </label>
               <input
-                id="Correo_electonico"
-                type="email"
-                onChange={(ev) => setEmail(ev.target.value)}
+                id="dniUser"
+                type="text"
+                onChange={(ev) => setDNI(ev.target.value)}
                 className=" mb-5 border-2 w-full p-2 mt-2  placeholder-gray-400  rounded-md"
-                placeholder="Correo Electronico"
+                placeholder="Introduzca su DNI"
               ></input>
             </div>
 
