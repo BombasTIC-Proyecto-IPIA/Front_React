@@ -1,9 +1,14 @@
-import React from 'react';
+
 import { Link } from 'react-router-dom';
-import estilos from '../styles/estilos.css';
-import normalize from '../styles/normalize.css';
+import '../styles/estilos.css';
+import '../styles/normalize.css';
+
+import Menu from './Menu';
+
 const Header = () => {
+    
     return (
+      
         <header className="hero h-full w-full">
             <nav className="nav container">
                 <div className="nav__logo">
@@ -30,6 +35,7 @@ const Header = () => {
                 <div className="nav__menu">
                     <img type="image/svg+xml" src="/imagenes/menu.svg" className="nav__img"/>
                 </div>
+                
             </nav>
 
             <section className="hero__container container">
