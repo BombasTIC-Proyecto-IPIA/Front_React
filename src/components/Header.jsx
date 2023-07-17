@@ -3,7 +3,6 @@ import { Link } from 'react-router-dom';
 import '../styles/estilos.css';
 import '../styles/normalize.css';
 
-import Menu from './Menu';
 
 const Header = () => {
     const [abierto, setAbierto] = useState(false);
@@ -63,6 +62,7 @@ const Header = () => {
                                 <Link to="/" className="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50">Inicio</Link>
                                 <Link to="/about" className="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50">Acerca de</Link>
                                 <Link to="/contact" className="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50">Contacto</Link>
+                                <Link to="/user" className="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50">Usuario</Link>
                             </div>
                         </div>
                     </div>
