@@ -1,12 +1,13 @@
 import React, { useEffect } from 'react';
+import '../js/carrusel'
 function Home() {
     return (
         <>
-            <section className="container about">
-                <h2 className="subtitle">Tu bienestar es nuestra máxima preocupación, y trabajamos incansablemente para ofrecerte los más altos estándares de calidad en cada aspecto de tu atención médica. </h2>
-                <p className="about__paragraph">Nuestros principales servicios</p>
+            <section >
+                <h2 className="subtitle mt-5 ml-5 mr-10 text-center">Tu bienestar es nuestra máxima preocupación, y trabajamos incansablemente para ofrecerte los más altos estándares de <br></br> calidad en cada aspecto de tu atención médica. </h2>
+                <p className="about__paragraph text-center ">Nuestros principales servicios</p>
 
-                <div className="about__main">
+                <div className="about__main mb-6">
                     <article className="about__icons">
                         <img src="/imagenes/shapes.svg" className="about__icon" />
                         <h3 className="about__title">Diagnostico por imagen</h3>
@@ -45,12 +46,12 @@ function Home() {
                 <h2 className="subtitle">Servicios y planes privados</h2>
 
                 <div className="price__table">
-                    <div className="price__element">
+                    <div className="price__element price__element_2">
                         <p className="price__name">Precio a consultar </p>
                         <h3 className="price__price">Genetica</h3>
 
                         <div className="price__items">
-                            <p className="price__features">Descubre los que tus genes pueden hacer por ti. </p>
+                            <p className="price__features">Descubre los que tus genes pueden hacer por ti <br></br> y tu familia. </p>
                         </div>
 
                         <a href="#" className="price__cta">Contacta</a>
@@ -69,12 +70,12 @@ function Home() {
                     </div>
 
 
-                    <div className="price__element">
+                    <div className="price__element price__element_2">
                         <p className="price__name">Precio a consultar</p>
                         <h3 className="price__price">Estética</h3>
 
                         <div className="price__items">
-                            <p className="price__features">Nuestros tratamientos se personalizan en función de sus necesidades.</p>
+                            <p className="price__features">Tratamientos personalizados en función de las necesidades.</p>
                         </div>
 
                         <a href="#" className="price__cta">contacta</a>
@@ -99,7 +100,7 @@ function Home() {
                                 <img src="/imagenes/imagen_6.jpg" className="testimony__img" />
                             </figure>
                         </section>
-
+                        
                         <section className="testimony__body" data-id="2">
                             <div className="testimony__texts">
                                 <h2 className="subtitle">Doctor Alejandro Perez, <span className="testimony__course">especialista en genetica.</span></h2>
@@ -131,69 +132,69 @@ function Home() {
                 </div>
             </section>
 
-            <section className="questions container">
-                <h2 className="subtitle">Preguntas frecuentes</h2>
-                <p className="questions__paragraph">Contacte con nosotros ante cualquier duda.</p>
+                <section className="questions container">
+                    <h2 className="subtitle">Preguntas frecuentes</h2>
+                    <p className="questions__paragraph">Contacte con nosotros ante cualquier duda.</p>
 
-                <section className="questions__container">
-                    <article className="questions__padding">
-                        <div className="questions__answer">
-                            <h3 className="questions__title">¿Con que mutuas trabajan?
-                                <span className="questions__arrow">
-                                    <img src="/imagenes/arrow.svg" className="questions__img" />
-                                </span>
-                            </h3>
+                    <section className="questions__container">
+                        <article className="questions__padding">
+                            <div className="questions__answer">
+                                <h3 className="questions__title">¿Con que mutuas trabajan?
+                                    <span className="questions__arrow">
+                                        <img src="/imagenes/arrow.svg" className="questions__img" />
+                                    </span>
+                                </h3>
 
-                            <p className="questions__show">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Quos
-                                facere, quidem eum id excepturi assumenda explicabo nam accusamus veritatis voluptates
-                                eveniet adipisci, dicta nihil nemo modi possimus officiis quam atque? Lorem ipsum, dolor sit
-                                amet consectetur adipisicing elit. Quos facere, quidem eum id excepturi assumenda explicabo
-                                nam accusamus veritatis voluptates eveniet adipisci, dicta nihil nemo modi possimus officiis
-                                quam atque?</p>
-                        </div>
-                    </article>
+                                <p className="questions__show">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Quos
+                                    facere, quidem eum id excepturi assumenda explicabo nam accusamus veritatis voluptates
+                                    eveniet adipisci, dicta nihil nemo modi possimus officiis quam atque? Lorem ipsum, dolor sit
+                                    amet consectetur adipisicing elit. Quos facere, quidem eum id excepturi assumenda explicabo
+                                    nam accusamus veritatis voluptates eveniet adipisci, dicta nihil nemo modi possimus officiis
+                                    quam atque?</p>
+                            </div>
+                        </article>
 
-                    <article className="questions__padding">
-                        <div className="questions__answer">
-                            <h3 className="questions__title">¿Hay atención telefonica?
-                                <span className="questions__arrow">
-                                    <img src="/imagenes/arrow.svg" className="questions__img" />
-                                </span>
-                            </h3>
+                        <article className="questions__padding">
+                            <div className="questions__answer">
+                                <h3 className="questions__title">¿Hay atención telefonica?
+                                    <span className="questions__arrow">
+                                        <img src="/imagenes/arrow.svg" className="questions__img" />
+                                    </span>
+                                </h3>
 
-                            <p className="questions__show">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Quos
-                                facere, quidem eum id excepturi assumenda explicabo nam accusamus veritatis voluptates
-                                eveniet adipisci, dicta nihil nemo modi possimus officiis quam atque? Lorem ipsum, dolor sit
-                                amet consectetur adipisicing elit. Quos facere, quidem eum id excepturi assumenda explicabo
-                                nam accusamus veritatis voluptates eveniet adipisci, dicta nihil nemo modi possimus officiis
-                                quam atque?</p>
-                        </div>
-                    </article>
+                                <p className="questions__show">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Quos
+                                    facere, quidem eum id excepturi assumenda explicabo nam accusamus veritatis voluptates
+                                    eveniet adipisci, dicta nihil nemo modi possimus officiis quam atque? Lorem ipsum, dolor sit
+                                    amet consectetur adipisicing elit. Quos facere, quidem eum id excepturi assumenda explicabo
+                                    nam accusamus veritatis voluptates eveniet adipisci, dicta nihil nemo modi possimus officiis
+                                    quam atque?</p>
+                            </div>
+                        </article>
 
-                    <article className="questions__padding">
-                        <div className="questions__answer">
-                            <h3 className="questions__title">¿ Por que no veo la imagen de mi resonancía?
-                                <span className="questions__arrow">
-                                    <img src="/imagenes/arrow.svg" className="questions__img" />
-                                </span>
-                            </h3>
+                        <article className="questions__padding">
+                            <div className="questions__answer">
+                                <h3 className="questions__title">¿ Por que no veo la imagen de mi resonancía?
+                                    <span className="questions__arrow">
+                                        <img src="/imagenes/arrow.svg" className="questions__img" />
+                                    </span>
+                                </h3>
 
-                            <p className="questions__show">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Quos
-                                facere, quidem eum id excepturi assumenda explicabo nam accusamus veritatis voluptates
-                                eveniet adipisci, dicta nihil nemo modi possimus officiis quam atque? Lorem ipsum, dolor sit
-                                amet consectetur adipisicing elit. Quos facere, quidem eum id excepturi assumenda explicabo
-                                nam accusamus veritatis voluptates eveniet adipisci, dicta nihil nemo modi possimus officiis
-                                quam atque?</p>
-                        </div>
-                    </article>
+                                <p className="questions__show">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Quos
+                                    facere, quidem eum id excepturi assumenda explicabo nam accusamus veritatis voluptates
+                                    eveniet adipisci, dicta nihil nemo modi possimus officiis quam atque? Lorem ipsum, dolor sit
+                                    amet consectetur adipisicing elit. Quos facere, quidem eum id excepturi assumenda explicabo
+                                    nam accusamus veritatis voluptates eveniet adipisci, dicta nihil nemo modi possimus officiis
+                                    quam atque?</p>
+                            </div>
+                        </article>
+                    </section>
+
+                    <section className="questions__offer">
+                        <h2 className="subtitle"></h2>
+                        <p className="questions__copy">Un hospital innovador que combina la excelencia médica con tecnología de vanguardia para ofrecer atención integral y personalizada a los pacientes. Un entorno acogedor y humano donde el equipo médico altamente capacitado trabaja en colaboración para proporcionar los más altos estándares de cuidado médico y bienestar.</p>
+                        <a href="#" className="cta">Contacta</a>
+                    </section>
                 </section>
-
-                <section className="questions__offer">
-                    <h2 className="subtitle"></h2>
-                    <p className="questions__copy">Un hospital innovador que combina la excelencia médica con tecnología de vanguardia para ofrecer atención integral y personalizada a los pacientes. Un entorno acogedor y humano donde el equipo médico altamente capacitado trabaja en colaboración para proporcionar los más altos estándares de cuidado médico y bienestar.</p>
-                    <a href="#" className="cta">Contacta</a>
-                </section>
-            </section>
 
 
         </>

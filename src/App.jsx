@@ -3,7 +3,7 @@ import Header from './components/Header';
 import Footer from './components/Footer';
 import Login from './components/LogIn';
 import VistaPacientes from './components/VistaPacientes';
-import ListaPacientes from './components/ListaPacientes';
+// import ListaPacientes from './components/ListaPacientes';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import VistaDoctores from './components/VistaDoctores';
 
