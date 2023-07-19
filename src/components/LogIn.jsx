@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import Select from "react-select";
-import cssLogin from "../styles/login.css";
 import { useDispatch } from "react-redux";
 import { setUser } from "../redux/userSlice";
 import { useNavigate } from 'react-router-dom';

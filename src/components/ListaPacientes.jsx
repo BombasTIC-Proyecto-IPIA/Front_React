@@ -4,33 +4,37 @@ import { useSelector } from 'react-redux';
 const MenuPacientes = (props) => {
   const user = useSelector(state => state.user);
   const [pacientes, setPacientes] = useState([]);
-
+  const [isLoading, setIsLoading] = useState(true);
   useEffect(() => {
     const fetchDataPaciente = async () => {
-      await fetch(`http://localhost:3000/api/paciente/d/${user.dni}`)
-        .then((response) => response.json())
-        .then((data) => setPacientes(data))
-        .catch((error) => console.error(error));
+      setIsLoading(true); // Set loading state to true before making the API call
 
+      try {
+        console.log(user.dni + "hola")
+        const responsePaciente = await fetch(`http://localhost:3000/api/paciente/d/${user.dni}`);
+        const dataPaciente = await responsePaciente.json();
 
-      fetch('http://localhost:3000/api/diagnostico')
-        .then(response => response.json())
-        .then(diagnosticos => {
-          setPacientes(prevPacientes => {
-            return prevPacientes.map(paciente => {
-              const diagnostico = diagnosticos.find(d => d.PacienteDni === paciente.dni);
-              return {
-                ...paciente,
-                diagnostico: diagnostico ? 'Hecho' : 'Pendiente'
-              };
-            });
-          });
-        })
-        .catch(error => console.error(error));
+        const responseDiagnosticos = await fetch('http://localhost:3000/api/diagnostico');
+        const diagnosticos = await responseDiagnosticos.json();
+
+        const updatedPacientes = dataPaciente.map(paciente => {
+          const diagnostico = diagnosticos.find(d => d.PacienteDni === paciente.dni);
+          return {
+            ...paciente,
+            diagnostico: diagnostico ? 'Hecho' : 'Pendiente'
+          };
+        });
+
+        setPacientes(updatedPacientes);
+      } catch (error) {
+        console.error(error);
+      } finally {
+        setIsLoading(false); // Set loading state to false after API calls are completed
+      }
     }
-    fetchDataPaciente();
 
-  }, []);
+    fetchDataPaciente();
+  }, [user.dni]);
 
   return (
     <div className="flex flex-col">
