@@ -4,7 +4,7 @@ import '../styles/estilos.css';
 import '../styles/normalize.css';
 
 
-const Header = () => {
+const NavCerrar = () => {
     const [abierto, setAbierto] = useState(false);
     const toggleMenu = () => {
         setAbierto(!abierto);
@@ -17,7 +17,7 @@ const Header = () => {
             <nav className="flex items-center justify-between p-6 lg:px-8" aria-label="Global">
                 <div className="flex lg:flex-1">
                     <div className="nav__logo">
-                        <h2 className="nav__title text-lg font-bold"> Hospital Santa Catalina</h2>
+                        <h2 className="nav__title text-lg font-bold">Hospital Santa Catalina</h2>
                     </div>
                 </div>
                 <div className="flex lg:hidden">
@@ -72,9 +72,9 @@ const Header = () => {
             <section className="hero__container container">
                 <h1 className="hero__title">Dedicados a tu bienestar en cada paso del camino</h1>
                 <p className="hero__paragraph"> En nuestro hospital, nos comprometemos a brindarte el mejor cuidado posible para asegurarnos de que te sientas seguro y atendido en todo momento. </p>
-                <a href="#" className="cta hover:bg-blue-200">Iniciar sesión</a>
+                <a href="#" className="cta bg-red-400 hover:bg-blue-200">CERRAR SESIÓN</a>
             </section>
         </header>
     );
 };
-export default Header;
+export default NavCerrar;

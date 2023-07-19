@@ -1,8 +1,11 @@
 import React, { useEffect } from 'react';
 import '../js/carrusel'
+import Header from './Header';
+
 function Home() {
     return (
         <>
+        <Header />
             <section >
                 <h2 className="subtitle mt-5 ml-5 mr-10 text-center">Tu bienestar es nuestra máxima preocupación, y trabajamos incansablemente para ofrecerte los más altos estándares de <br></br> calidad en cada aspecto de tu atención médica. </h2>
                 <p className="about__paragraph text-center ">Nuestros principales servicios</p>
@@ -46,7 +49,7 @@ function Home() {
                 <h2 className="subtitle">Servicios y planes privados</h2>
 
                 <div className="price__table">
-                    <div className="price__element price__element_2">
+                    <div className="price__element price__element_2 hover:scale-105 shadow-2xl">
                         <p className="price__name">Precio a consultar </p>
                         <h3 className="price__price">Genetica</h3>
 
@@ -58,7 +61,7 @@ function Home() {
                     </div>
 
 
-                    <div className="price__element price__element--best">
+                    <div className="price__element price__element--best hover:scale-105 hadow-2xl">
                         <p className="price__name">Precio a consultar</p>
                         <h3 className="price__price">Reproducción asistida</h3>
 
@@ -70,7 +73,7 @@ function Home() {
                     </div>
 
 
-                    <div className="price__element price__element_2">
+                    <div className="price__element price__element_2 hover:scale-105 shadow-2xl">
                         <p className="price__name">Precio a consultar</p>
                         <h3 className="price__price">Estética</h3>
 

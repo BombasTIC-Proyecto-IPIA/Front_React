@@ -4,6 +4,12 @@ import cssLogin from "../styles/login.css";
 import { useDispatch } from "react-redux";
 import { setUser } from "../redux/userSlice";
 import { useNavigate } from 'react-router-dom';
+import NavLogin from "./NavLogin";
+
+
+
+
+
 
 const Login = (props) => {
   const [dni, setDNI] = useState("");
@@ -53,6 +59,8 @@ const Login = (props) => {
   };
 
   return (
+  <> 
+   <NavLogin/>
     <div className="">
       <div>
         <div className="bg-white shadow-md rounded-lg py-10 px-5 mb-10 w-1/2 items-center mt-10  mx-auto   ">
@@ -106,6 +114,8 @@ const Login = (props) => {
         </div>
       </div>
     </div>
+    </>
+  
   );
 };
 

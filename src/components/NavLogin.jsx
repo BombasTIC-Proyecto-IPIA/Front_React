@@ -4,7 +4,7 @@ import '../styles/estilos.css';
 import '../styles/normalize.css';
 
 
-const Header = () => {
+const NavLogin = () => {
     const [abierto, setAbierto] = useState(false);
     const toggleMenu = () => {
         setAbierto(!abierto);
@@ -72,9 +72,9 @@ const Header = () => {
             <section className="hero__container container">
                 <h1 className="hero__title">Dedicados a tu bienestar en cada paso del camino</h1>
                 <p className="hero__paragraph"> En nuestro hospital, nos comprometemos a brindarte el mejor cuidado posible para asegurarnos de que te sientas seguro y atendido en todo momento. </p>
-                <a href="#" className="cta hover:bg-blue-200">Iniciar sesión</a>
+                {/* <a href="#" className="cta bg-red-400 hover:bg-blue-200">CERRAR SESIÓN</a> */}
             </section>
         </header>
     );
 };
-export default Header;
+export default NavLogin;
