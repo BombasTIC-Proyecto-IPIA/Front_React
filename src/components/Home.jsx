@@ -5,7 +5,7 @@ import Header from './Header';
 function Home() {
     return (
         <>
-        <Header />
+        <Header/>
             <section >
                 <h2 className="subtitle mt-5 ml-5 mr-10 text-center">Tu bienestar es nuestra máxima preocupación, y trabajamos incansablemente para ofrecerte los más altos estándares de <br></br> calidad en cada aspecto de tu atención médica. </h2>
                 <p className="about__paragraph text-center ">Nuestros principales servicios</p>
