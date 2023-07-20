@@ -1,9 +1,12 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import TablaPacientes from "./ListaPacientes"
 import { useSelector } from 'react-redux';
 import NavCerrar from './NavCerrar';
 
 const VistaDoctores = () => {
+  useEffect(() => {
+    document.title = 'Hospital | Hard Skills';
+  }, []);
   const user = useSelector(state => state.user);
     return(
       <>
