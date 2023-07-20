@@ -32,12 +32,6 @@ const NavLogin = () => {
                             <Link to="/" className="nav__links hover:text-sky-400">Inicio</Link>
                         </li>
                         <li className="nav__items">
-                            <Link to="/about" className="nav__links hover:text-sky-400">Acerca de</Link>
-                        </li>
-                        <li className="nav__items">
-                            <Link to="/contact" className="nav__links hover:text-sky-400">Contacto</Link>
-                        </li>
-                        <li className="nav__items">
                             <Link to="/about" className="nav__links hover:text-sky-400">Tu zona</Link>
                         </li>
 

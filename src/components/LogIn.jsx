@@ -81,7 +81,7 @@ const Login = (props) => {
 
             <div id="Registro" className="">
               <label className="block text-black uppercase font-bold">
-                Correo Electronico
+                DNI
               </label>
               <input
                 id="dniUser"

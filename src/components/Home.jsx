@@ -143,51 +143,31 @@ function Home() {
                         <article className="questions__padding">
                             <div className="questions__answer">
                                 <h3 className="questions__title">¿Con que mutuas trabajan?
-                                    <span className="questions__arrow">
-                                        <img src="/imagenes/arrow.svg" className="questions__img" />
-                                    </span>
                                 </h3>
-
-                                <p className="questions__show">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Quos
-                                    facere, quidem eum id excepturi assumenda explicabo nam accusamus veritatis voluptates
-                                    eveniet adipisci, dicta nihil nemo modi possimus officiis quam atque? Lorem ipsum, dolor sit
-                                    amet consectetur adipisicing elit. Quos facere, quidem eum id excepturi assumenda explicabo
-                                    nam accusamus veritatis voluptates eveniet adipisci, dicta nihil nemo modi possimus officiis
-                                    quam atque?</p>
+                                <h2 className='subtitle text-lg text-left'> En España existen un total de 20 mutuas colaboradoras con la Seguridad Social, repartidas por todo el territorio nacional. Todas ellas están asociadas a AMAT, Asociación de Mutuas de Accidentes de Trabajo y Enfermedades Profesionales de la Seguridad Social.</h2>
                             </div>
                         </article>
 
                         <article className="questions__padding">
                             <div className="questions__answer">
                                 <h3 className="questions__title">¿Hay atención telefonica?
-                                    <span className="questions__arrow">
-                                        <img src="/imagenes/arrow.svg" className="questions__img" />
-                                    </span>
                                 </h3>
-
-                                <p className="questions__show">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Quos
-                                    facere, quidem eum id excepturi assumenda explicabo nam accusamus veritatis voluptates
-                                    eveniet adipisci, dicta nihil nemo modi possimus officiis quam atque? Lorem ipsum, dolor sit
-                                    amet consectetur adipisicing elit. Quos facere, quidem eum id excepturi assumenda explicabo
-                                    nam accusamus veritatis voluptates eveniet adipisci, dicta nihil nemo modi possimus officiis
-                                    quam atque?</p>
+                                <h2 className='subtitle text-lg text-left'>Si, En nuestro afán por brindarle el mejor servicio posible, le aseguramos que su bienestar es nuestra prioridad número uno. Nuestro equipo altamente capacitado de profesionales médicos y personal de atención al cliente está a su disposición para atender todas sus necesidades y responder a sus preguntas.</h2>
                             </div>
                         </article>
 
                         <article className="questions__padding">
                             <div className="questions__answer">
-                                <h3 className="questions__title">¿ Por que no veo la imagen de mi resonancía?
-                                    <span className="questions__arrow">
-                                        <img src="/imagenes/arrow.svg" className="questions__img" />
-                                    </span>
+                                <h3 className="questions__title ">¿ Por que no veo la imagen de mi resonancía?
                                 </h3>
+                                <h2 className='subtitle text-left text-lg'>Existen varias razones por las cuales los pacientes no pueden ver directamente las resonancias:
 
-                                <p className="questions__show">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Quos
-                                    facere, quidem eum id excepturi assumenda explicabo nam accusamus veritatis voluptates
-                                    eveniet adipisci, dicta nihil nemo modi possimus officiis quam atque? Lorem ipsum, dolor sit
-                                    amet consectetur adipisicing elit. Quos facere, quidem eum id excepturi assumenda explicabo
-                                    nam accusamus veritatis voluptates eveniet adipisci, dicta nihil nemo modi possimus officiis
-                                    quam atque?</p>
+Confidencialidad y privacidad: Los estudios médicos, como las resonancias, contienen información altamente sensible sobre la salud del paciente. 
+
+Interpretación médica: Los estudios de diagnóstico médico, como las resonancias, son complejos y requieren interpretación y análisis por parte de médicos especializados.
+
+Comunicación médico-paciente: Los resultados de los estudios médicos deben presentarse y explicarse de manera adecuada para garantizar que el paciente comprenda la información relevante y su significado. </h2>
+                            
                             </div>
                         </article>
                     </section>
