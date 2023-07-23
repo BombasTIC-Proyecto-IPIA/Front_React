@@ -1,10 +1,12 @@
 import React, { useEffect, useState } from "react";
 import { useSelector } from 'react-redux';
+import { useNavigate } from 'react-router-dom'; 
 
 const MenuPacientes = (props) => {
   const user = useSelector(state => state.user);
   const [pacientes, setPacientes] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
+  const navigate = useNavigate();
   useEffect(() => {
     const fetchDataPaciente = async () => {
       setIsLoading(true); // Set loading state to true before making the API call
@@ -35,6 +37,12 @@ const MenuPacientes = (props) => {
 
     fetchDataPaciente();
   }, [user.dni]);
+
+  const handleRowClick = (dni) => {
+    console.log("Hola")
+    // Redirect to the PreDiagnostico component with the key (dni) as a parameter
+    navigate(`/pre-diagnostico/${dni}`);
+  };
 
   return (
     <div className="flex flex-col">
@@ -69,7 +77,7 @@ const MenuPacientes = (props) => {
                 {pacientes.map((paciente) => (
                   <tr
                     className="bg-white border-b transition duration-300 ease-in-out hover:bg-gray-100"
-                    key={paciente.dni}
+                    key={paciente.dni} onClick={() => handleRowClick(paciente.dni)}
                   >
                     <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
                       {paciente.dni}

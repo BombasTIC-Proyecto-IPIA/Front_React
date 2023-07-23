@@ -18,7 +18,8 @@ function App() {
           <Route path="/login" element={<Login />} />
           <Route path="/doctor" element={<VistaDoctores />} />
           <Route path="/pacientes" element={<VistaPacientes />} />
-          <Route path="/diagnostico" element={<PreDiagnostico />} />
+          <Route path="/pre-diagnostico/:dni" element={<PreDiagnostico />} />
+          <Route path="/diagnostico/" element={<PreDiagnostico />} />
         </Routes>
       </main>
       <Footer />
