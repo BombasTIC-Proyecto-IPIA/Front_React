@@ -31,9 +31,6 @@ const NavLogin = () => {
                         <li className="nav__items">
                             <Link to="/" className="nav__links hover:text-sky-400">Inicio</Link>
                         </li>
-                        <li className="nav__items">
-                            <Link to="/about" className="nav__links hover:text-sky-400">Tu zona</Link>
-                        </li>
 
                         <img type="image/svg+xml" src="/imagenes/close.svg" className="nav__close" />
                     </ul>
@@ -54,9 +51,6 @@ const NavLogin = () => {
                         <div className="-my-6 divide-y divide-gray-500/10">
                             <div className="space-y-2 py-6">
                                 <Link to="/" className="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50">Inicio</Link>
-                                <Link to="/about" className="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50">Acerca de</Link>
-                                <Link to="/contact" className="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50">Contacto</Link>
-                                <Link to="/user" className="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50">Usuario</Link>
                             </div>
                         </div>
                     </div>

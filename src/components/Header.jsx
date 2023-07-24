@@ -2,9 +2,10 @@ import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import '../styles/estilos.css';
 import '../styles/normalize.css';
-
+import { useSelector } from 'react-redux';
 
 const Header = () => {
+    const user = useSelector(state => state.user);
     const [abierto, setAbierto] = useState(false);
     const toggleMenu = () => {
         setAbierto(!abierto);
@@ -12,6 +13,8 @@ const Header = () => {
     const cerrarMenu = () => {
         setAbierto(false);
     };
+    const userType = user?.userType;
+    const redirectTo = userType === 'P' ? '/paciente' : userType === 'D' ? '/doctor' : '/login';
     return (
         <header className="hero h-full w-full">
             <nav className="flex items-center justify-between p-6 lg:px-8" aria-label="Global">
@@ -33,7 +36,9 @@ const Header = () => {
                         </li>
                      
                         <li className="nav__items">
-                            <Link to="/about" className="nav__links hover:text-sky-400">Tu zona</Link>
+                        <Link to={redirectTo} className="nav__links hover:text-sky-400">
+                                Tu Zona
+                            </Link>
                         </li>
 
                         <img type="image/svg+xml" src="/imagenes/close.svg" className="nav__close" />
@@ -55,9 +60,9 @@ const Header = () => {
                         <div className="-my-6 divide-y divide-gray-500/10">
                             <div className="space-y-2 py-6">
                                 <Link to="/" className="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50">Inicio</Link>
-                                <Link to="/about" className="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50">Acerca de</Link>
-                                <Link to="/contact" className="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50">Contacto</Link>
-                                <Link to="/user" className="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50">Usuario</Link>
+                                <Link to={redirectTo} className="nav__links hover:text-sky-400">
+                                    Tu Zona
+                                </Link>
                             </div>
                         </div>
                     </div>
@@ -67,7 +72,7 @@ const Header = () => {
             <section className="hero__container container">
                 <h1 className="hero__title">Dedicados a tu bienestar en cada paso del camino</h1>
                 <p className="hero__paragraph"> En nuestro hospital, nos comprometemos a brindarte el mejor cuidado posible para asegurarnos de que te sientas seguro y atendido en todo momento. </p>
-                <a href="#" className="cta hover:bg-blue-200">Iniciar sesión</a>
+                <Link to="/login" className="cta hover:bg-blue-200">Iniciar Sesión</Link>
             </section>
         </header>
     );

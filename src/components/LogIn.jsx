@@ -47,7 +47,10 @@ const Login = (props) => {
         if (data.status === "Success") {
           data.data.userType = tipoUsuario;
           dispatch(setUser(data.data));
-          navigate("/doctor"); // Navigate to the desired component on successful login
+          if(tipoUsuario == "D")
+            navigate("/doctor"); // Navigate to the desired component on successful login
+          else
+            navigate("/paciente");
         }
 
       })

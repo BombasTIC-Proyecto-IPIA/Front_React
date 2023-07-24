@@ -23,12 +23,17 @@ export const userSlice = createSlice({
             state.dni = dni;
             state.name = name;
             state.userType = userType;
-        }
+        },
+        clearUser: (state) => {
+            state.dni = "";
+            state.name = "";
+            state.userType = "";
+        },
     }
 });
 
 // Wrap the reducer with persistReducer
 const persistedUserReducer = persistReducer(userPersistConfig, userSlice.reducer);
 
-export const { setUser } = userSlice.actions;
+export const { setUser, clearUser } = userSlice.actions;
 export default persistedUserReducer; // Return the persisted reducer
