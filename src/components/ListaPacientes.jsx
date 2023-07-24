@@ -7,12 +7,12 @@ const MenuPacientes = (props) => {
   const [pacientes, setPacientes] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   const navigate = useNavigate();
+
   useEffect(() => {
     const fetchDataPaciente = async () => {
       setIsLoading(true); // Set loading state to true before making the API call
 
       try {
-        console.log(user.dni + "hola")
         const responsePaciente = await fetch(`http://localhost:3000/api/paciente/d/${user.dni}`);
         const dataPaciente = await responsePaciente.json();
 
@@ -33,15 +33,19 @@ const MenuPacientes = (props) => {
       } finally {
         setIsLoading(false); // Set loading state to false after API calls are completed
       }
-    }
+    };
 
     fetchDataPaciente();
   }, [user.dni]);
 
-  const handleRowClick = (dni) => {
-    console.log("Hola")
-    // Redirect to the PreDiagnostico component with the key (dni) as a parameter
-    navigate(`/pre-diagnostico/${dni}`);
+  const handleRowClick = (dni, diagnostico) => {
+    if (diagnostico === 'Hecho') {
+      // Redirect to the "Diagnostico" component with the pacienteDNI as state
+      navigate(`/diagnostico`, { state: { pacienteDNI: dni } });
+    } else {
+      // Redirect to the PreDiagnostico component with the pacienteDNI as a parameter
+      navigate(`/pre-diagnostico/${dni}`);
+    }
   };
 
   return (
@@ -67,7 +71,7 @@ const MenuPacientes = (props) => {
 
                   <th
                     scope="col"
-                    className="text-sm font-medium text-gray-900 px-6 py-4 text-xl "
+                    className="text-sm font-medium text-gray-900 px-6 py-4 text-xl"
                   >
                     Diagnostico previo
                   </th>
@@ -77,7 +81,8 @@ const MenuPacientes = (props) => {
                 {pacientes.map((paciente) => (
                   <tr
                     className="bg-white border-b transition duration-300 ease-in-out hover:bg-gray-100"
-                    key={paciente.dni} onClick={() => handleRowClick(paciente.dni)}
+                    key={paciente.dni}
+                    onClick={() => handleRowClick(paciente.dni, paciente.diagnostico)}
                   >
                     <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
                       {paciente.dni}

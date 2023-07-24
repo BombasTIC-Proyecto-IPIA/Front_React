@@ -1,15 +1,16 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import NavCerrar from "./NavCerrar";
-import { useLocation } from "react-router-dom";
-const RealizarDiagnostico = () => {
+import { useLocation, useNavigate } from "react-router-dom";
 
+const RealizarDiagnostico = () => {
     const location = useLocation();
-    const {resultado, imageData, pacienteDNI} = location.state;
+    const navigate = useNavigate();
+    const { resultado: propResultado, imageData, pacienteDNI } = location.state;
 
     function b64toBlob(base64, contentType = '', sliceSize = 512) {
         const byteCharacters = atob(base64);
         const byteArrays = [];
-    
+
         for (let offset = 0; offset < byteCharacters.length; offset += sliceSize) {
             const slice = byteCharacters.slice(offset, offset + sliceSize);
             const byteNumbers = new Array(slice.length);
@@ -19,14 +20,107 @@ const RealizarDiagnostico = () => {
             const byteArray = new Uint8Array(byteNumbers);
             byteArrays.push(byteArray);
         }
-    
+
         const blob = new Blob(byteArrays, { type: contentType });
         return blob;
     }
 
-    const imageBlob = b64toBlob(imageData, 'image/png');
-    return (
+    // State to track if data is loaded
+    const [dataLoaded, setDataLoaded] = useState(false);
 
+    // State to hold the diagnosis entered by the doctor
+    const [diagnosticoDoctor, setDiagnosticoDoctor] = useState("");
+
+    // State to hold the resultado
+    const [resultado, setResultado] = useState(null);
+
+    // State to hold the image blob
+    const [imageBlob, setImageBlob] = useState(null);
+
+    useEffect(() => {
+        if (propResultado == null) {
+            // Make API call to fetch the resultado and imageData
+            fetch(`http://localhost:3000/api/diagnostico/${pacienteDNI}`)
+                .then((response) => {
+                    if (!response.ok) {
+                        throw new Error("Network response was not ok");
+                    }
+                    return response.json();
+                })
+                .then((data) => {
+                    // Assuming the API response provides the resultado and imageData
+                    setResultado(data.resultado_Prediccion);
+                    setDataLoaded(true);
+                    setDiagnosticoDoctor(data.resultados)
+                    if (data.imagen) {
+                        const uint8Array = new Uint8Array(data.imagen.data);
+                        // Use the Uint8Array directly to create the imageBlob
+                        const imageBlob = new Blob([uint8Array], { type: "image/png" });
+                        setImageBlob(imageBlob);
+                    }
+                })
+                .catch((error) => {
+                    console.error("Error fetching resultado from API:", error);
+                });
+        } else {
+            // If resultado is already provided, set it in the component state
+            setResultado(propResultado);
+            setDataLoaded(true);
+
+            // If imageData is available, set the imageBlob as well
+            if (imageData) {
+                const imageBlob = b64toBlob(imageData, 'image/png');
+                setImageBlob(imageBlob);
+            }
+        }
+    }, [propResultado, imageData, pacienteDNI]);
+
+    const handleDiagnosisChange = (event) => {
+        setDiagnosticoDoctor(event.target.value);
+    };
+
+    const handleSubmit = (event) => {
+        event.preventDefault();
+
+        const formData = new FormData();
+        formData.append("resultados", diagnosticoDoctor);
+        formData.append("imagen", imageBlob); // Use the Blob directly
+        formData.append("PacienteDni", pacienteDNI);
+        formData.append("resultado_Prediccion", resultado);
+
+        const requestOptions = {
+            method: "POST",
+            body: formData,
+        };
+
+        fetch("http://localhost:3000/api/diagnostico", requestOptions)
+            .then((response) => {
+                if (!response.ok) {
+                    throw new Error("Network response was not ok");
+                }
+                return response.json();
+            })
+            .then((result) => {
+                if (result.status === "OK") {
+                    // Handle the response if needed
+                }
+            })
+            .catch((error) => {
+                console.error("Error al subir el archivo:", error);
+            });
+    };
+
+    const handleCancel = () => {
+        // Redirigir a http://localhost:5173/doctor
+        navigate(`/doctor`);
+    };
+
+    if (!dataLoaded) {
+        // Render a loading state or a placeholder while waiting for the data
+        return <div>Loading...</div>;
+    }
+
+    return (
         <div>
             <NavCerrar />
             <div>
@@ -34,41 +128,39 @@ const RealizarDiagnostico = () => {
                 {resultado ? <p>Positive Result</p> : <p>Negative Result</p>}
             </div>
             <div className="container grid md:grid-cols-2">
-
                 <div className='mx-auto col-span-1'>
-                    <img
-                        src={URL.createObjectURL(imageBlob)}
-                        alt=""
-                        className="mr-4"
-                    />
+                    {imageBlob && (
+                        <img
+                            src={URL.createObjectURL(imageBlob)}
+                            alt=""
+                            className="mr-4"
+                        />
+                    )}
                 </div>
 
                 <div className='mx-auto col-span-1'>
-                    <form className="flex flex-col items-center w-80">
+                    <form className="flex flex-col items-center w-80" onSubmit={handleSubmit}>
                         <textarea
                             name="diagnosis"
                             id="diagnosis"
                             cols="30"
                             rows="10"
-                            className="w-full b1 px-3 py-2 border border-gray-300 rounded-md resize-vertical "
+                            value={diagnosticoDoctor}
+                            onChange={handleDiagnosisChange}
+                            className="w-full b1 px-3 py-2 border border-gray-300 rounded-md resize-vertical"
                             placeholder="Escribe aquí el diagnóstico..."
                         ></textarea>
                         <button className="mt-4 px-4 py-2 bg-blue-500 text-white rounded-md hover:bg-blue-700">
                             Realizar Diagnóstico
                         </button>
-                        <button className="mt-2 px-4 py-2 bg-gray-300 hover:bg-gray-400 text-gray-700 rounded-md">
+                        <button className="mt-2 px-4 py-2 bg-gray-300 hover:bg-gray-400 text-gray-700 rounded-md" onClick={handleCancel}>
                             Cancelar
                         </button>
                     </form>
                 </div>
-
-
             </div>
         </div>
-
     );
-
 };
 
 export default RealizarDiagnostico;
-
