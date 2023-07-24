@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from "react";
 import ImageDrop from "./ImageDragger";
 import { useParams, useNavigate } from "react-router-dom"; // Import useNavigate
+import NavCerrar from "./NavCerrar";
+
 
 const PreDiagnostico = () => {
     const { dni } = useParams();
@@ -48,9 +50,13 @@ const PreDiagnostico = () => {
     };
 
     return (
-        <div>
+        <>
+          <NavCerrar/>
+
+          <div className="bg-white shadow-md rounded-lg py-10 px-5 mb-10 w-1/2 items-center mt-10  mx-auto  mb-100 ">
             <ImageDrop onFileDrop={handleFileDrop} />
         </div>
+        </>
     );
 };
 
