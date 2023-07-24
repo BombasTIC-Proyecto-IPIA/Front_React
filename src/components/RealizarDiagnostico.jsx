@@ -1,19 +1,43 @@
 import React from "react";
 import NavCerrar from "./NavCerrar";
+import { useLocation } from "react-router-dom";
 const RealizarDiagnostico = () => {
 
+    const location = useLocation();
+    const {resultado, imageData, pacienteDNI} = location.state;
+
+    function b64toBlob(base64, contentType = '', sliceSize = 512) {
+        const byteCharacters = atob(base64);
+        const byteArrays = [];
+    
+        for (let offset = 0; offset < byteCharacters.length; offset += sliceSize) {
+            const slice = byteCharacters.slice(offset, offset + sliceSize);
+            const byteNumbers = new Array(slice.length);
+            for (let i = 0; i < slice.length; i++) {
+                byteNumbers[i] = slice.charCodeAt(i);
+            }
+            const byteArray = new Uint8Array(byteNumbers);
+            byteArrays.push(byteArray);
+        }
+    
+        const blob = new Blob(byteArrays, { type: contentType });
+        return blob;
+    }
+
+    const imageBlob = b64toBlob(imageData, 'image/png');
     return (
 
         <div>
             <NavCerrar />
             <div>
                 <h1 className="text-center text-4xl"> <br />Diagnostico</h1>
+                {resultado ? <p>Positive Result</p> : <p>Negative Result</p>}
             </div>
             <div className="container grid md:grid-cols-2">
 
                 <div className='mx-auto col-span-1'>
                     <img
-                        src="https://via.placeholder.com/256"
+                        src={URL.createObjectURL(imageBlob)}
                         alt=""
                         className="mr-4"
                     />

@@ -7,6 +7,7 @@ import VistaPacientes from './components/VistaPacientes';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import VistaDoctores from './components/VistaDoctores';
 import PreDiagnostico from './components/PreDiagnostico';
+import RealizarDiagnostico from './components/RealizarDiagnostico';
 
 function App() {
 
@@ -19,7 +20,7 @@ function App() {
           <Route path="/doctor" element={<VistaDoctores />} />
           <Route path="/pacientes" element={<VistaPacientes />} />
           <Route path="/pre-diagnostico/:dni" element={<PreDiagnostico />} />
-          <Route path="/diagnostico/" element={<PreDiagnostico />} />
+          <Route path="/diagnostico/" element={<RealizarDiagnostico />} />
         </Routes>
       </main>
       <Footer />
