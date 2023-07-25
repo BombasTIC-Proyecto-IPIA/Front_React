@@ -13,10 +13,10 @@ const MenuPacientes = (props) => {
       setIsLoading(true); // Set loading state to true before making the API call
 
       try {
-        const responsePaciente = await fetch(`http://localhost:3000/api/paciente/d/${user.dni}`);
+        const responsePaciente = await fetch(`http://192.168.233.182:3000/api/paciente/d/${user.dni}`);
         const dataPaciente = await responsePaciente.json();
 
-        const responseDiagnosticos = await fetch('http://localhost:3000/api/diagnostico');
+        const responseDiagnosticos = await fetch('http://192.168.233.182:3000/api/diagnostico');
         const diagnosticos = await responseDiagnosticos.json();
 
         const updatedPacientes = dataPaciente.map(paciente => {

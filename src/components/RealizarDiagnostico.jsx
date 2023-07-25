@@ -40,7 +40,7 @@ const RealizarDiagnostico = () => {
     useEffect(() => {
         if (propResultado == null) {
             // Make API call to fetch the resultado and imageData
-            fetch(`http://localhost:3000/api/diagnostico/${pacienteDNI}`)
+            fetch(`http://192.168.233.182:3000/api/diagnostico/${pacienteDNI}`)
                 .then((response) => {
                     if (!response.ok) {
                         throw new Error("Network response was not ok");
@@ -122,27 +122,26 @@ const RealizarDiagnostico = () => {
                 body: formData,
             };
 
-            fetch("http://localhost:3000/api/diagnostico", requestOptions)
-                .then((response) => {
-                    if (!response.ok) {
-                        throw new Error("Network response was not ok");
-                    }
-                    return response.json();
-                })
-                .then((result) => {
-                    if (result.status === "OK") {
-                        // Handle the response if needed
-                    }
-                })
-                .catch((error) => {
-                    console.error("Error al subir el archivo:", error);
-                });
-        }
+        fetch("http://192.168.233.182:3000/api/diagnostico", requestOptions)
+            .then((response) => {
+                if (!response.ok) {
+                    throw new Error("Network response was not ok");
+                }
+                return response.json();
+            })
+            .then((result) => {
+                if (result.status === "OK") {
+                    // Handle the response if needed
+                }
+            })
+            .catch((error) => {
+                console.error("Error al subir el archivo:", error);
+            });
     };
 
 
     const handleCancel = () => {
-        // Redirigir a http://localhost:5173/doctor
+        // Redirigir a http://192.168.233.182:5173/doctor
         navigate(`/doctor`);
     };
 
