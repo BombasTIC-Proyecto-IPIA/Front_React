@@ -39,7 +39,7 @@ const Footer = () => {
                     <a href="#" className="footer__icons"><img src="/imagenes/youtube.svg" className="footer__img" /></a>
                 </div>
 
-                <h3 className="footer__copyright">Derechos reservados &copy; Jordan Alexander</h3>
+                <h3 className="footer__copyright">Derechos reservados &copy; J.A</h3>
             </section>
         </footer>
     );

@@ -32,6 +32,8 @@ const VistaPacientes = () => {
         <h3 className="text-4xl mb-10 font-style: italic">Tu diagnóstico</h3>
         {/* Mostrar los resultados en el párrafo */}
         <p className='text-2xl bg-white shadow-md rounded-lg py-10 px-5 mb-10 items-center mt-10  mx-auto'>{resultados}</p>
+        <br /> <br />
+        <h2 className=' py-4 px-4 bg-blue-500 w-2/3 m-auto p-8 text-white uppercase font-bold rounded-md hover:scale-105 cursor-pointer' > Contacta con nosotros para una visita de seguimiento</h2>
       </div>
     </>
   );
