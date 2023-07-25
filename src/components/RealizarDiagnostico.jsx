@@ -36,11 +36,12 @@ const RealizarDiagnostico = () => {
 
   // State to hold the image blob
   const [imageBlob, setImageBlob] = useState(null);
+  const [nombrePaciente, setNombrePaciente] = useState(null);
 
   useEffect(() => {
     if (propResultado == null) {
       // Make API call to fetch the resultado and imageData
-      fetch(`http://192.168.233.182:3000/api/diagnostico/${pacienteDNI}`)
+      fetch(`http://localhost:3000/api/diagnostico/${pacienteDNI}`)
         .then((response) => {
           if (!response.ok) {
             throw new Error("Network response was not ok");
@@ -73,6 +74,20 @@ const RealizarDiagnostico = () => {
         setImageBlob(imageBlob);
       }
     }
+    fetch(`http://localhost:3000/api/paciente/${pacienteDNI}`)
+      .then((response) => {
+        if (!response.ok) {
+          throw new Error("Network response was not ok");
+        }
+        return response.json();
+      })
+      .then((data) => {
+        // Assuming the API response provides the resultado and imageData
+        setNombrePaciente(data.name);
+      })
+      .catch((error) => {
+        console.error("Error fetching resultado from API:", error);
+      });
   }, [propResultado, imageData, pacienteDNI]);
 
   const handleDiagnosisChange = (event) => {
@@ -101,7 +116,7 @@ const RealizarDiagnostico = () => {
 
       console.log(formData.entries());
       fetch(
-        `http://192.168.233.182:3000/api/diagnostico/${pacienteDNI}`,
+        `http://localhost:3000/api/diagnostico/${pacienteDNI}`,
         requestOptions
       )
         .then((response) => {
@@ -124,7 +139,7 @@ const RealizarDiagnostico = () => {
         body: formData,
       };
 
-            fetch("http://192.168.233.182:3000/api/diagnostico", requestOptions)
+            fetch("http://localhost:3000/api/diagnostico", requestOptions)
                 .then((response) => {
                     if (!response.ok) {
                         throw new Error("Network response was not ok");
@@ -144,7 +159,7 @@ const RealizarDiagnostico = () => {
 
 
     const handleCancel = () => {
-        // Redirigir a http://192.168.233.182:5173/doctor
+        // Redirigir a http://localhost:5173/doctor
         navigate(`/doctor`);
     };
 
@@ -154,22 +169,34 @@ const RealizarDiagnostico = () => {
     }
 
     return (
+      <div>
+        <NavCerrar />
         <div>
-            <NavCerrar />
-            <div>
-                <h1 className="text-center text-4xl"> <br />Diagnostico</h1>
-                {resultado ? <p>Positive Result</p> : <p>Negative Result</p>}
-            </div>
-            <div className="container grid md:grid-cols-2">
-                <div className='mx-auto col-span-1'>
-                    {imageBlob && (
-                        <img
-                            src={URL.createObjectURL(imageBlob)}
-                            alt=""
-                            className="mr-4"
-                        />
-                    )}
-                </div>
+          <h1 className="text-center text-4xl mb-9 font-bold ">
+            {" "}
+            <br />
+            Diagnostico de {nombrePaciente}
+          </h1>
+          {resultado ? (
+            <p className=" bg-white shadow-md  rounded-lg py-5 px-5 mb-89 w-1/5 items-center mt-10  mx-auto  mb-100 text-red-500  text-center font-bold text-2xl">
+              Resultado Positivo
+            </p>
+          ) : (
+            <p className="bg-white shadow-md  rounded-lg py-5 px-5 mb-89 w-1/5 items-center mt-10  mx-auto  mb-100 text-green-500  text-center font-bold text-2xl">
+              Resultado Negativo
+            </p>
+          )}
+        </div>
+        <div className="container grid md:grid-cols-2">
+          <div className="mx-auto col-span-1">
+            {imageBlob && (
+              <img
+                src={URL.createObjectURL(imageBlob)}
+                alt=""
+                className="mr-4 rounded-md"
+              />
+            )}
+          </div>
 
           <div className="mx-auto col-span-1">
             <form

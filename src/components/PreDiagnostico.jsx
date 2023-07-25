@@ -22,7 +22,7 @@ const PreDiagnostico = () => {
         const formData = new FormData();
         formData.append("file", file);
 
-        fetch("http://192.168.233.182:3000/utilities/executeModel", {
+        fetch("http://localhost:3000/utilities/executeModel", {
             method: "POST",
             body: formData,
         })
