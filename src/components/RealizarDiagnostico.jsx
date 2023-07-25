@@ -40,7 +40,7 @@ const RealizarDiagnostico = () => {
     useEffect(() => {
         if (propResultado == null) {
             // Make API call to fetch the resultado and imageData
-            fetch(`http://192.168.233.182:3000/api/diagnostico/${pacienteDNI}`)
+            fetch(`http://172.20.10.2:3000/api/diagnostico/${pacienteDNI}`)
                 .then((response) => {
                     if (!response.ok) {
                         throw new Error("Network response was not ok");
@@ -93,7 +93,7 @@ const RealizarDiagnostico = () => {
             body: formData,
         };
 
-        fetch("http://192.168.233.182:3000/api/diagnostico", requestOptions)
+        fetch("http://172.20.10.2:3000/api/diagnostico", requestOptions)
             .then((response) => {
                 if (!response.ok) {
                     throw new Error("Network response was not ok");
@@ -111,7 +111,7 @@ const RealizarDiagnostico = () => {
     };
 
     const handleCancel = () => {
-        // Redirigir a http://192.168.233.182:5173/doctor
+        // Redirigir a http://172.20.10.2:5173/doctor
         navigate(`/doctor`);
     };
 
@@ -124,8 +124,8 @@ const RealizarDiagnostico = () => {
         <div>
             <NavCerrar />
             <div>
-                <h1 className="text-center text-4xl"> <br />Diagnostico</h1>
-                {resultado ? <p>Positive Result</p> : <p>Negative Result</p>}
+                <h1 className="text-center text-4xl mb-9 font-bold "> <br />Diagnostico</h1>
+                {resultado ? <p className=" bg-white shadow-md  rounded-lg py-5 px-5 mb-89 w-1/5 items-center mt-10  mx-auto  mb-100 text-red-500  text-center font-bold text-2xl">Positive Result</p> : <p className="bg-white shadow-md  rounded-lg py-5 px-5 mb-89 w-1/5 items-center mt-10  mx-auto  mb-100 text-green-500  text-center font-bold text-2xl">Negative Result</p>}
             </div>
             <div className="container grid md:grid-cols-2">
                 <div className='mx-auto col-span-1'>
@@ -133,13 +133,13 @@ const RealizarDiagnostico = () => {
                         <img
                             src={URL.createObjectURL(imageBlob)}
                             alt=""
-                            className="mr-4"
+                            className="mr-4 rounded-md"
                         />
                     )}
                 </div>
 
                 <div className='mx-auto col-span-1'>
-                    <form className="flex flex-col items-center w-80" onSubmit={handleSubmit}>
+                    <form className="flex flex-col items-center w-80  " onSubmit={handleSubmit}>
                         <textarea
                             name="diagnosis"
                             id="diagnosis"
@@ -147,7 +147,7 @@ const RealizarDiagnostico = () => {
                             rows="10"
                             value={diagnosticoDoctor}
                             onChange={handleDiagnosisChange}
-                            className="w-full b1 px-3 py-2 border border-gray-300 rounded-md resize-vertical"
+                            className="w-full b1 px-3 py-2 border border-gray-300 rounded-md resize-vertical "
                             placeholder="Escribe aquí el diagnóstico..."
                         ></textarea>
                         <button className="mt-4 px-4 py-2 bg-blue-500 text-white rounded-md hover:bg-blue-700">
