@@ -127,7 +127,7 @@ const RealizarDiagnostico = () => {
                     if (!response.ok) {
                         throw new Error("Network response was not ok");
                     }
-                    return response.json();
+                    alert("Diagnosticado correctamente");
                 })
                 .then((result) => {
                     if (result.status === "OK") {
@@ -137,60 +137,61 @@ const RealizarDiagnostico = () => {
                 .catch((error) => {
                     console.error("Error al subir el archivo:", error);
                 });
-        };
-
-
-        const handleCancel = () => {
-            // Redirigir a http://192.168.233.182:5173/doctor
-            navigate(`/doctor`);
-        };
-
-        if (!dataLoaded) {
-            // Render a loading state or a placeholder while waiting for the data
-            return <div>Loading...</div>;
         }
+    };
 
-        return (
+
+    const handleCancel = () => {
+        // Redirigir a http://192.168.233.182:5173/doctor
+        navigate(`/doctor`);
+    };
+
+    if (!dataLoaded) {
+        // Render a loading state or a placeholder while waiting for the data
+        return <div>Loading...</div>;
+    }
+
+    return (
+        <div>
+            <NavCerrar />
             <div>
-                <NavCerrar />
-                <div>
-                    <h1 className="text-center text-4xl"> <br />Diagnostico</h1>
-                    {resultado ? <p>Positive Result</p> : <p>Negative Result</p>}
+                <h1 className="text-center text-4xl"> <br />Diagnostico</h1>
+                {resultado ? <p>Positive Result</p> : <p>Negative Result</p>}
+            </div>
+            <div className="container grid md:grid-cols-2">
+                <div className='mx-auto col-span-1'>
+                    {imageBlob && (
+                        <img
+                            src={URL.createObjectURL(imageBlob)}
+                            alt=""
+                            className="mr-4"
+                        />
+                    )}
                 </div>
-                <div className="container grid md:grid-cols-2">
-                    <div className='mx-auto col-span-1'>
-                        {imageBlob && (
-                            <img
-                                src={URL.createObjectURL(imageBlob)}
-                                alt=""
-                                className="mr-4"
-                            />
-                        )}
-                    </div>
 
-                    <div className='mx-auto col-span-1'>
-                        <form className="flex flex-col items-center w-80" onSubmit={handleSubmit}>
-                            <textarea
-                                name="diagnosis"
-                                id="diagnosis"
-                                cols="30"
-                                rows="10"
-                                value={diagnosticoDoctor}
-                                onChange={handleDiagnosisChange}
-                                className="w-full b1 px-3 py-2 border border-gray-300 rounded-md resize-vertical"
-                                placeholder="Escribe aquí el diagnóstico..."
-                            ></textarea>
-                            <button className="mt-4 px-4 py-2 bg-blue-500 text-white rounded-md hover:bg-blue-700">
-                                Realizar Diagnóstico
-                            </button>
-                            <button className="mt-2 px-4 py-2 bg-gray-300 hover:bg-gray-400 text-gray-700 rounded-md" onClick={handleCancel}>
-                                Cancelar
-                            </button>
-                        </form>
-                    </div>
+                <div className='mx-auto col-span-1'>
+                    <form className="flex flex-col items-center w-80" onSubmit={handleSubmit}>
+                        <textarea
+                            name="diagnosis"
+                            id="diagnosis"
+                            cols="30"
+                            rows="10"
+                            value={diagnosticoDoctor}
+                            onChange={handleDiagnosisChange}
+                            className="w-full b1 px-3 py-2 border border-gray-300 rounded-md resize-vertical"
+                            placeholder="Escribe aquí el diagnóstico..."
+                        ></textarea>
+                        <button className="mt-4 px-4 py-2 bg-blue-500 text-white rounded-md hover:bg-blue-700">
+                            Realizar Diagnóstico
+                        </button>
+                        <button className="mt-2 px-4 py-2 bg-gray-300 hover:bg-gray-400 text-gray-700 rounded-md" onClick={handleCancel}>
+                            Cancelar
+                        </button>
+                    </form>
                 </div>
             </div>
-        );
-    };
+        </div>
+    );
 };
+
 export default RealizarDiagnostico;

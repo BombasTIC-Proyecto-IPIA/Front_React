@@ -43,7 +43,6 @@ const Login = (props) => {
         }
       })
       .then((data) => {
-        console.log(data);
         if (data.status === "Success") {
           data.data.userType = tipoUsuario;
           dispatch(setUser(data.data));
@@ -51,6 +50,9 @@ const Login = (props) => {
             navigate("/doctor"); // Navigate to the desired component on successful login
           else
             navigate("/paciente");
+        }
+        else{
+          alert("Inicio de sesión invalido!")
         }
 
       })

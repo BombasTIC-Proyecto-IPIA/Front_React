@@ -20,7 +20,7 @@ function App() {
           <Route path="/doctor" element={<VistaDoctores />} />
           <Route path="/paciente" element={<VistaPacientes />} />
           <Route path="/pre-diagnostico/:dni" element={<PreDiagnostico />} />
-          <Route path="/diagnostico/" element={<RealizarDiagnostico />} />
+          <Route path="/diagnostico" element={<RealizarDiagnostico />} />
         </Routes>
       </main>
       <Footer />
