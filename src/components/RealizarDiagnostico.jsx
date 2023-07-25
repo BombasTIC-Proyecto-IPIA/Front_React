@@ -83,32 +83,63 @@ const RealizarDiagnostico = () => {
         event.preventDefault();
 
         const formData = new FormData();
-        formData.append("resultados", diagnosticoDoctor);
-        formData.append("imagen", imageBlob); // Use the Blob directly
-        formData.append("PacienteDni", pacienteDNI);
-        formData.append("resultado_Prediccion", resultado);
 
-        const requestOptions = {
-            method: "POST",
-            body: formData,
-        };
 
-        fetch("http://localhost:3000/api/diagnostico", requestOptions)
-            .then((response) => {
-                if (!response.ok) {
-                    throw new Error("Network response was not ok");
-                }
-                return response.json();
-            })
-            .then((result) => {
-                if (result.status === "OK") {
-                    // Handle the response if needed
-                }
-            })
-            .catch((error) => {
-                console.error("Error al subir el archivo:", error);
-            });
+        // Check if there is an existing diagnosis
+        if (propResultado == null) {
+            formData.append("resultados", diagnosticoDoctor);
+
+            const requestOptions = {
+                headers: {
+                    Accept: "application/json",
+                    "Content-Type": "application/json"
+                },
+                method: "PATCH", // Use PATCH method to update the existing diagnosis
+                body: JSON.stringify({
+                    resultados: diagnosticoDoctor
+                }),
+            };
+
+            console.log(formData.entries())
+            fetch(`http://localhost:3000/api/diagnostico/${pacienteDNI}`, requestOptions)
+                .then((response) => {
+                    if (!response.ok) {
+                        throw new Error("Network response was not ok");
+                    }
+                    alert("Actualizado correctamente");
+                })
+                .catch((error) => {
+                    console.error("Error al actualizar el diagnóstico:", error);
+                });
+        } else {
+            formData.append("resultados", diagnosticoDoctor);
+            formData.append("imagen", imageBlob); // Use the Blob directly
+            formData.append("PacienteDni", pacienteDNI);
+            formData.append("resultado_Prediccion", resultado);
+            // If no existing diagnosis, use the POST method to create a new one
+            const requestOptions = {
+                method: "POST",
+                body: formData,
+            };
+
+            fetch("http://localhost:3000/api/diagnostico", requestOptions)
+                .then((response) => {
+                    if (!response.ok) {
+                        throw new Error("Network response was not ok");
+                    }
+                    return response.json();
+                })
+                .then((result) => {
+                    if (result.status === "OK") {
+                        // Handle the response if needed
+                    }
+                })
+                .catch((error) => {
+                    console.error("Error al subir el archivo:", error);
+                });
+        }
     };
+
 
     const handleCancel = () => {
         // Redirigir a http://localhost:5173/doctor
