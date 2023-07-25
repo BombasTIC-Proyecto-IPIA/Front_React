@@ -40,7 +40,7 @@ const RealizarDiagnostico = () => {
     useEffect(() => {
         if (propResultado == null) {
             // Make API call to fetch the resultado and imageData
-            fetch(`http://localhost:3000/api/diagnostico/${pacienteDNI}`)
+            fetch(`http://172.20.10.2:3000/api/diagnostico/${pacienteDNI}`)
                 .then((response) => {
                     if (!response.ok) {
                         throw new Error("Network response was not ok");
@@ -93,7 +93,7 @@ const RealizarDiagnostico = () => {
             body: formData,
         };
 
-        fetch("http://localhost:3000/api/diagnostico", requestOptions)
+        fetch("http://172.20.10.2:3000/api/diagnostico", requestOptions)
             .then((response) => {
                 if (!response.ok) {
                     throw new Error("Network response was not ok");
@@ -111,7 +111,7 @@ const RealizarDiagnostico = () => {
     };
 
     const handleCancel = () => {
-        // Redirigir a http://localhost:5173/doctor
+        // Redirigir a http://172.20.10.2:5173/doctor
         navigate(`/doctor`);
     };
 

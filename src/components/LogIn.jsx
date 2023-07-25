@@ -24,7 +24,7 @@ const Login = (props) => {
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    fetch("http://localhost:3000/auth/login", {
+    fetch("http://172.20.10.2:3000/auth/login", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
