@@ -10,7 +10,7 @@ const VistaPacientes = () => {
     // Función asincrónica para hacer el fetch
     const fetchData = async () => {
       try {
-        const response = await fetch(`http://172.20.10.2:3000/api/diagnostico/${user.dni}`);
+        const response = await fetch(`http://192.168.233.182:3000/api/diagnostico/${user.dni}`);
         if (!response.ok) {
           throw new Error('Network response was not ok');
         }
